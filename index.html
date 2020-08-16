@@ -1,0 +1,319 @@
+<html>
+
+<head>
+    <title>
+        RSA-Cryptography
+    </title>
+</head>
+<style>
+    .option {
+        background-color: #fff;
+        width: 300px;
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-radius: 100px;
+        border: 2px solid transparent;
+    }
+    .option:hover{
+    cursor: pointer;
+    border: 2px solid rgb(39, 38, 38);
+    color: rgb(39, 38, 38);
+}
+    .btn-next{
+    background-color: rgb(39, 38, 38);
+    color: white ;
+    padding:15px 35px;
+    border: none;
+    border-radius: 27px;
+    transition: 0.4s all;
+}
+.btn-next:hover{
+    cursor: pointer;
+    background-color:white;
+    color: rgb(39, 38, 38);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+    transform: translateY(-5px);
+}
+.simulator,.instruction{
+    background-color: rgba(224, 224, 224,0.5);
+    text-shadow: 0px 1px 1px #555;
+    border-radius: 40px;
+}
+body {
+  background-image: url('pex.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.float{
+    background-color:  rgba(224, 224, 224,0.8);
+}
+</style>
+
+<body>
+    <div class="instruction">
+        <h1>Instructions</h1>
+        <ul>
+            <li>Instr 1</li>
+            <li>Instr 2</li>
+            <li>Instr 3</li>
+            <li>Instr 4</li>
+        </ul>
+    </div>
+    <div class="simulator">
+        <div id="pqform">
+            <label for="p">Enter P:</label>
+            <input class="option" type="text" id="p" name="p"><br><br>
+            <label for="q">Enter Q:</label>
+            <input class="option" type="text" id="q" name="q">
+            <input class="btn-next" type="submit" value="Submit" id="pqsubmit" onclick="sub()">
+        </div>
+        <div id="eform">
+            <label for="e">Choose a value for e:</label>
+            <select name="e" id="e">
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="11">11</option>
+            </select>
+            <input class="btn-next" type="submit" value="Submit" id="esubmit" onclick="esub()">
+        </div>
+        <div class="float" id="pqdetail">
+            P: 5<br>
+            Q: 5<br>
+            N: P X Q = 25<br>
+            e: 3<br>
+            phi(N): (P-1) X (Q-1) = 16
+        </div>
+        <div class="float" id="edetail">
+            Public Key : (e,n) = (3,25)
+        </div>
+        <div class="float" id="ddetail">
+            Private Key (d) = 2011
+        </div>
+        <div id="send">
+            <label for="p">Enter Message:</label>
+            <input class="option" type="text" id="message" name="send"><br><br>
+            <input class="btn-next" type="submit" value="Encrypt" id="encrypt" onclick="encrypt()">
+        </div>
+        <div class="float" id="encrypted">
+            Encrypted Data:<br>
+            Convert letters to numbers : H = 8 and I = 9<br>
+            Thus Encrypted Data c = 89e mod n. <br>
+            Thus our Encrypted Data comes out to be <strong>1394</strong> <br>
+            <input type="submit" value="Send" id="send_message" onclick="send()">
+        </div>
+        <div class="float" id="sending">
+            Data: 1394
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    .instruction {
+        border: 1px solid black;
+        padding: 0% 1% 1% 1%;
+    }
+
+    .simulator {
+        border: 1px solid black;
+        padding: 1% 1% 1% 1%;
+        height: 70%;
+    }
+
+    /* The animation code */
+    @keyframes example {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    #pqform {
+        padding: 2%;
+        width: 30%;
+    }
+
+    #pqdetail {
+        border: 1px solid black;
+        width: 200px;
+        height: 80px;
+        padding: 2%;
+        display: none;
+        position: relative;
+    }
+
+    @keyframes pqdetails {
+        from {
+            top: 0px;
+            left: 0px;
+        }
+
+        to {
+            top: 0px;
+            left: 80%;
+        }
+    }
+
+    #eform {
+        display: none;
+        transition: opacity 1s ease-out;
+        width: 30%;
+    }
+
+    #edetail {
+        border: 1px solid black;
+        width: 200px;
+        height: fit-content;
+        padding: 2%;
+        display: none;
+        position: relative;
+    }
+
+    @keyframes edetails {
+        from {
+            top: 0px;
+            left: 0px;
+        }
+
+        to {
+            top: 10px;
+            left: 80%;
+        }
+    }
+
+    @keyframes example2 {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    #ddetail {
+        border: 1px solid black;
+        width: 200px;
+        height: fit-content;
+        padding: 2%;
+        display: none;
+        position: relative;
+    }
+
+    @keyframes ddetails {
+        from {
+            top: 0px;
+            left: 0px;
+        }
+
+        to {
+            top: 20px;
+            left: 80%;
+        }
+    }
+
+    #send {
+        display: none;
+        transition: opacity 1s ease-out;
+        width: fit-content;
+        padding: 2%;
+    }
+
+    #sending {
+        display: none;
+        position: relative;
+        border: 1px solid black;
+        padding: 2%;
+        width: fit-content;
+        transition: opacity 1s ease-out;
+    }
+
+    #encrypted {
+        display: none;
+        width: fit-content;
+    }
+
+    #encrypted {
+        border: 1px solid black;
+        padding: 2%;
+    }
+
+    @keyframes send {
+        from {
+            top: 0px;
+            left: 0px;
+        }
+
+        to {
+            top: 20px;
+            left: 60%;
+        }
+    }
+</style>
+<script>
+    function change() {
+        document.getElementById('pqdetail').style.display = 'block';
+        document.getElementById('pqdetail').style.animation = 'pqdetails 8s';
+        document.getElementById('pqdetail').style.animationFillMode = 'both';
+        document.getElementById('pqdetail').style.animationTimingFunction = 'ease-in-out';
+        document.getElementById('pqdetail').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'block'; document.getElementById('eform').style.animation = 'example2 1s'; });
+
+    }
+
+    function sub() {
+        document.getElementById('pqform').style.animation = 'example 2s';
+        document.getElementById('pqform').style.animationDelay = '-1s';
+        //console.log('entered');
+        document.getElementById('pqform').addEventListener("animationend", function () { document.getElementById('pqform').style.display = 'none'; change(); });
+    }
+    function encrypt() {
+        document.getElementById('send').style.animation = 'example 2s';
+        document.getElementById('send').style.animationDelay = '-1s';
+        document.getElementById('send').addEventListener("animationend", function () { document.getElementById('send').style.display = 'none'; show1(); });
+    }
+
+    function esub() {
+        document.getElementById('eform').style.animation = 'example 1s';
+        document.getElementById('eform').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'none'; echange(); });
+    }
+    function dchange() {
+        document.getElementById('ddetail').style.animationDelay = '1s';
+        document.getElementById('ddetail').style.animation = 'ddetails 6s';
+        document.getElementById('ddetail').style.animationFillMode = 'both';
+        document.getElementById('ddetail').style.animationTimingFunction = 'ease-in-out';
+        document.getElementById('ddetail').addEventListener("animationend", function () { document.getElementById('send').style.display = 'block'; });
+    }
+
+    function echange() {
+        document.getElementById('edetail').style.display = 'block';
+        document.getElementById('edetail').style.animationDelay = '1s';
+        document.getElementById('edetail').style.animation = 'edetails 6s';
+        document.getElementById('edetail').style.animationFillMode = 'both';
+        document.getElementById('edetail').style.animationTimingFunction = 'ease-in-out';
+        document.getElementById('edetail').addEventListener("animationend", function () { document.getElementById('ddetail').style.display = 'block'; dchange(); });
+
+    }
+    function show1() {
+        document.getElementById('encrypted').style.display = 'block';
+
+    }
+    function send() {
+        document.getElementById('encrypted').style.display = 'none';
+        document.getElementById('sending').style.display = 'block';
+        document.getElementById('sending').style.animation = 'send 6s';
+        document.getElementById('sending').style.animationDelay = '-1s';
+        document.getElementById('sending').style.animationFillMode = 'both';
+        document.getElementById('sending').style.animationTimingFunction = 'ease-in-out';
+        document.getElementById('sending').addEventListener("animationend", function () {
+            document.getElementById('sending').style.display = 'none';
+            document.getElementById('sending').innerHTML += '<br><input type="submit" value="Decrypt" id="decrypt_message" onclick="recieve()">                ';
+            document.getElementById('sending').style.display = 'block';
+        });
+
+    }
+</script>
