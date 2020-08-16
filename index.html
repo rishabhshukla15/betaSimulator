@@ -3,7 +3,7 @@
 <head>
     <title>
         RSA-Cryptography
-    </title>
+    </title>    
 </head>
 <style>
     .option {
@@ -74,25 +74,21 @@ body {
         <div id="eform">
             <label for="e">Choose a value for e:</label>
             <select name="e" id="e">
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="7">7</option>
-                <option value="11">11</option>
+                <option value="">Select e</option>                
             </select>
             <input class="btn-next" type="submit" value="Submit" id="esubmit" onclick="esub()">
         </div>
         <div class="float" id="pqdetail">
-            P: 5<br>
-            Q: 5<br>
-            N: P X Q = 25<br>
-            e: 3<br>
-            phi(N): (P-1) X (Q-1) = 16
+            P: <span id="p1"></span><br>
+            Q: <span id="q1"></span><br>
+            n: P X Q = <span id="p1q1"></span><br>            
+            &Phi;(n): (P-1) X (Q-1) = <span id="phi"></span>
         </div>
         <div class="float" id="edetail">
-            Public Key : (e,n) = (3,25)
+            Public Key : (e,n) = (<span id="pbkey"></span>)
         </div>
         <div class="float" id="ddetail">
-            Private Key (d) = 2011
+            Private Key : (d,n) = (<span id="prkey"></span>)
         </div>
         <div id="send">
             <label for="p">Enter Message:</label>
@@ -101,13 +97,17 @@ body {
         </div>
         <div class="float" id="encrypted">
             Encrypted Data:<br>
-            Convert letters to numbers : H = 8 and I = 9<br>
-            Thus Encrypted Data c = 89e mod n. <br>
-            Thus our Encrypted Data comes out to be <strong>1394</strong> <br>
+            <!--Convert letters to numbers : H = 8 and I = 9<br>
+            Thus Encrypted Data c = 89^e mod n. <br>-->
+            Encrypted Data comes out to be <strong><span id="encmsg"></span></strong> <br>
             <input type="submit" value="Send" id="send_message" onclick="send()">
         </div>
         <div class="float" id="sending">
-            Data: 1394
+            Data: <strong><span id="encmsg1"></span></strong>
+        </div>
+        <div class="float" id="decrypted">                      
+            <!--Thus Decrypted Data = c^d mod n. <br>-->
+            Decrypted Data comes out to be <strong><span id="decmsg"></span></strong> <br>            
         </div>
     </div>
 </body>
@@ -236,16 +236,20 @@ body {
         transition: opacity 1s ease-out;
     }
 
-    #encrypted {
+    #encrypted,#decrypted {
         display: none;
-        width: fit-content;
+        width: 300px;
+        transition: opacity 1s ease-out;        
     }
 
-    #encrypted {
+    #encrypted,#decrypted {
         border: 1px solid black;
         padding: 2%;
     }
-
+    #decrypted{
+        position: relative;
+        left: 50%;
+    }
     @keyframes send {
         from {
             top: 0px;
@@ -272,16 +276,21 @@ body {
         document.getElementById('pqform').style.animation = 'example 2s';
         document.getElementById('pqform').style.animationDelay = '-1s';
         //console.log('entered');
+        pqupdate();
+        ecalc();
         document.getElementById('pqform').addEventListener("animationend", function () { document.getElementById('pqform').style.display = 'none'; change(); });
     }
     function encrypt() {
         document.getElementById('send').style.animation = 'example 2s';
         document.getElementById('send').style.animationDelay = '-1s';
+        get_encrypt();
         document.getElementById('send').addEventListener("animationend", function () { document.getElementById('send').style.display = 'none'; show1(); });
     }
 
     function esub() {
         document.getElementById('eform').style.animation = 'example 1s';
+        pb();
+        prkey();
         document.getElementById('eform').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'none'; echange(); });
     }
     function dchange() {
@@ -319,4 +328,6 @@ body {
         });
 
     }
+
 </script>
+<script src="script.js"></script>
