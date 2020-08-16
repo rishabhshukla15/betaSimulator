@@ -29,7 +29,8 @@ function ecalc(){
     {
         if(gcd(e,phi)==1)    // e is for public key exponent
         { 
-            add(e);            
+            add(e);  
+            break;
         }
     }
 }
