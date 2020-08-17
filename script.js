@@ -63,9 +63,10 @@ function get_encrypt(){
 }
 function recieve(){
     var N=BigInt(n);
-    decmsg=pow(encmsg,d)%N;    
+    decmsg=pow(encmsg,d)%N; 
     document.getElementById('decmsg').innerHTML=decmsg;
-    document.getElementById('sending').style.display='none';
+    document.getElementById('sending').style.display='none';    
+    document.getElementById('gif').innerHTML='<img src="decryption.gif" width="850px" height="350px" style="background: transparent;">';
     document.getElementById('decrypted').style.display='block';
 }
 

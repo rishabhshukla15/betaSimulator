@@ -38,21 +38,80 @@
     transform: translateY(-5px);
 }
 .simulator,.instruction{
-    background-color: rgba(225, 225, 225,0.5);
+    /*background-color: rgba(225, 225, 225,0.5);*/
     text-shadow: 0px 1px 1px rgb(34, 34, 34);
     border-radius: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body {
-  background-image: url('pex.jpg');
+  /*background-image: url('pex.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: cover;*/
 }
 .float{
     background-color:  rgba(225, 225, 225,0.8);
     border-radius: 20px;
 }
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  float: right;
+  bottom: 30;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
 </style>
 
 <body>
@@ -62,8 +121,14 @@ body {
             <li>Instr 1</li>
             <li>Instr 2</li>
         </ul>
+        <div class="popup" onclick="myFunction()"><b style="color: crimson"><span id="click">Click to see formulae</span></b>
+                <span class="popuptext" id="myPopup">Formulae box</span>
+        </div>
     </div>
     <div class="simulator">
+        <div id="gif">
+
+        </div>
         <div id="pqform">
             <label for="p">Enter P:</label>
             <input class="option" type="text" id="p" name="p"><br><br>
@@ -97,9 +162,7 @@ body {
         </div>
         <div class="float" id="encrypted">
             Encrypted Data:<br>
-            <!--Convert letters to numbers : H = 8 and I = 9<br>
-            Thus Encrypted Data c = 89^e mod n. <br>-->
-            Encrypted Data comes out to be <strong><span id="encmsg"></span></strong> <br>
+            <strong><span id="encmsg"></span></strong> <br>
             <input type="submit" value="Send" id="send_message" onclick="send()">
         </div>
         <div class="float" id="sending">
@@ -107,13 +170,22 @@ body {
         </div>
         <div class="float" id="decrypted">                      
             <!--Thus Decrypted Data = c^d mod n. <br>-->
-            Decrypted Data comes out to be <strong><span id="decmsg"></span></strong> <br>            
+            Decrypted Data:<br>
+            <strong><span id="decmsg"></span></strong> <br>            
         </div>
     </div>
 </body>
 
 </html>
 <style>
+    #gif{
+        position: absolute;
+        top: 0;
+        height: fit-content;
+        width: fit-content;     
+        background: transparent;   
+        margin: 1% 2%;        
+    }
     .instruction {
         border: 1px solid black;
         padding: 0% 1% 1% 1%;
@@ -123,6 +195,7 @@ body {
         border: 1px solid black;
         padding: 1% 1% 1% 1%;
         height: 70%;
+        position: relative;
     }
 
     /* The animation code */
@@ -153,12 +226,14 @@ body {
     @keyframes pqdetails {
         from {
             top: 0px;
-            left: 0px;
+            left: 80%;
+            opacity: 0;
         }
 
         to {
             top: 0px;
             left: 80%;
+            opacity: 1;
         }
     }
 
@@ -179,13 +254,15 @@ body {
 
     @keyframes edetails {
         from {
-            top: 0px;
-            left: 0px;
+            top: 10px;
+            left: 80%;
+            opacity: 0;
         }
 
         to {
             top: 10px;
             left: 80%;
+            opacity: 1;
         }
     }
 
@@ -210,13 +287,15 @@ body {
 
     @keyframes ddetails {
         from {
-            top: 0px;
-            left: 0px;
+            top: 20px;
+            left: 80%;
+            opacity: 0;
         }
 
         to {
             top: 20px;
             left: 80%;
+            opacity: 1;
         }
     }
 
@@ -225,6 +304,8 @@ body {
         transition: opacity 1s ease-out;
         width: fit-content;
         padding: 2%;
+        position: absolute;
+        bottom: 0;
     }
 
     #sending {
@@ -238,21 +319,25 @@ body {
 
     #encrypted,#decrypted {
         display: none;
-        width: 300px;
-        transition: opacity 1s ease-out;        
+        width: fit-content;
+        transition: opacity 1s ease-out; 
+        position: absolute;
+        bottom: 5;
+        
     }
 
     #encrypted,#decrypted {
         border: 1px solid black;
         padding: 2%;
+        
     }
     #decrypted{
         position: relative;
-        left: 50%;
+        left: 40%;
     }
     @keyframes send {
         from {
-            top: 0px;
+            top: 20px;
             left: 0px;
         }
 
@@ -263,9 +348,10 @@ body {
     }
 </style>
 <script>
+    var f=1;
     function change() {
         document.getElementById('pqdetail').style.display = 'block';
-        document.getElementById('pqdetail').style.animation = 'pqdetails 8s';
+        document.getElementById('pqdetail').style.animation = 'pqdetails 4s';
         document.getElementById('pqdetail').style.animationFillMode = 'both';
         document.getElementById('pqdetail').style.animationTimingFunction = 'ease-in-out';
         document.getElementById('pqdetail').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'block'; document.getElementById('eform').style.animation = 'example2 1s'; });
@@ -283,7 +369,7 @@ body {
     function encrypt() {
         document.getElementById('send').style.animation = 'example 2s';
         document.getElementById('send').style.animationDelay = '-1s';
-        get_encrypt();
+        get_encrypt();        
         document.getElementById('send').addEventListener("animationend", function () { document.getElementById('send').style.display = 'none'; show1(); });
     }
 
@@ -291,11 +377,13 @@ body {
         document.getElementById('eform').style.animation = 'example 1s';
         pb();
         prkey();
+        document.getElementById('gif').innerHTML='<img src="public_key.gif" width="850px" height="350px" style="background: transparent;">';
         document.getElementById('eform').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'none'; echange(); });
     }
     function dchange() {
+        document.getElementById('gif').innerHTML='<img src="private_key.gif" width="850px" height="350px" style="background: transparent;">';
         document.getElementById('ddetail').style.animationDelay = '1s';
-        document.getElementById('ddetail').style.animation = 'ddetails 6s';
+        document.getElementById('ddetail').style.animation = 'ddetails 4s';
         document.getElementById('ddetail').style.animationFillMode = 'both';
         document.getElementById('ddetail').style.animationTimingFunction = 'ease-in-out';
         document.getElementById('ddetail').addEventListener("animationend", function () { document.getElementById('send').style.display = 'block'; });
@@ -304,20 +392,23 @@ body {
     function echange() {
         document.getElementById('edetail').style.display = 'block';
         document.getElementById('edetail').style.animationDelay = '1s';
-        document.getElementById('edetail').style.animation = 'edetails 6s';
+        document.getElementById('edetail').style.animation = 'edetails 4s';
         document.getElementById('edetail').style.animationFillMode = 'both';
         document.getElementById('edetail').style.animationTimingFunction = 'ease-in-out';
         document.getElementById('edetail').addEventListener("animationend", function () { document.getElementById('ddetail').style.display = 'block'; dchange(); });
 
     }
     function show1() {
+        document.getElementById('gif').innerHTML='<img src="encryption .gif" width="850px" height="350px" style="background: transparent;">';
+        
         document.getElementById('encrypted').style.display = 'block';
 
     }
     function send() {
         document.getElementById('encrypted').style.display = 'none';
+        document.getElementById('gif').innerHTML='<img src="cipher.gif" width="850px" height="350px" style="background: transparent;">';
         document.getElementById('sending').style.display = 'block';
-        document.getElementById('sending').style.animation = 'send 6s';
+        document.getElementById('sending').style.animation = 'send 4s';
         document.getElementById('sending').style.animationDelay = '-1s';
         document.getElementById('sending').style.animationFillMode = 'both';
         document.getElementById('sending').style.animationTimingFunction = 'ease-in-out';
@@ -328,6 +419,18 @@ body {
         });
 
     }
-
+    function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        if (f==1) {
+            document.getElementById('click').innerHTML='Click to hide formulae';
+            f=0;
+        }
+        else{
+            document.getElementById('click').innerHTML='Click to show formulae';
+            f=1;
+        }
+        
+    }
 </script>
 <script src="script.js"></script>
