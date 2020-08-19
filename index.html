@@ -140,6 +140,7 @@
             <li>P and Q should be between 11 and 100.</li>
             <li>Value of e differs according to the given inputs.</li>
             <li>Message to be sent should be a numeric message containing only numbers (0-9).</li>
+            <li>Message sent should be in range [0-300].</li>
         </ul>
         <div class="popup" onclick="myFunction()" id="myBtn"><b style="color: crimson"><span id="click">Click to see
                     formulae</span></b>
@@ -158,9 +159,12 @@
             <div class="modal-body">
                 <p>The formulae used are as follows : </p>
                 <ul>
-                    <li>formula 1</li>
-                    <li>formula 2</li>
-                    <li>formula 3</li>
+                    <li>n = P * Q</li>
+                    <li>&Phi; = (P-1) * (Q-1)</li>
+                    <li>e = i such that GCD(i,&Phi;)=1</li>
+                    <li>d = (k*&Phi;+1) / e for some integer k</li>
+                    <li>Cipher text = message^e mod n</li>
+                    <li>Plain text = cipher^d mod n</li>                    
                 </ul>
             </div>
             <div class="modal-footer">
