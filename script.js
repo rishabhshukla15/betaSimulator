@@ -1,6 +1,8 @@
 console.log('script....');
-var n,phi,evalue,d,encmsg,decmsg;
+var n,phi,evalue,d,encmsg,decmsg,p,q;
 function pqupdate(){
+    p=document.getElementById('p').value;
+    q=document.getElementById('q').value;
     document.getElementById('p1').innerHTML=document.getElementById('p').value; 
     document.getElementById('q1').innerHTML=document.getElementById('q').value;    
     n=document.getElementById('p').value*document.getElementById('q').value;
@@ -27,7 +29,7 @@ function ecalc(){
     var e;
     for(e=2;e<phi;e++)
     {
-        if(gcd(e,phi)==1)    // e is for public key exponent
+        if(gcd(e,phi)==1 && e!=p && e!=q)    // e is for public key exponent
         { 
             add(e);  
             break;
@@ -36,7 +38,7 @@ function ecalc(){
 }
 function prkey(){
     var i;
-    for(i=0;i<=9;i++)
+    for(i=1;i<=9;i++)
     {
         var x=1+(i*phi);
         if(x%evalue==0)      //d is for private key exponent
