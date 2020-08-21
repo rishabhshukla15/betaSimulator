@@ -68,7 +68,7 @@ function recieve(){
     decmsg=pow(encmsg,d)%N; 
     document.getElementById('decmsg').innerHTML=decmsg;
     document.getElementById('sending').style.display='none';    
-    document.getElementById('gif').innerHTML='<img src="decryption.gif" width="950px" height="400px" style="background: transparent;">';
+    document.getElementById('gif').innerHTML='<img src="decryption.gif" width="650px" height="250px" style="background: transparent;">';
     document.getElementById('decrypted').style.display='block';
 }
 
