@@ -6,6 +6,12 @@
     </title>
 </head>
 <style>
+    @media screen and (max-width: 1100px) {
+           img{
+                width: 500px;
+                height: 200px;
+           }
+    }
     #list{
         display: block;
     }
@@ -20,7 +26,7 @@
 
     .option:hover {
         cursor: pointer;
-        border: 2px solid rgb(39, 38, 38);
+        border: 2px solid rgb(93, 93, 202);
         color: rgb(39, 38, 38);
     }
 
@@ -29,7 +35,7 @@
     }
 
     .btn-next {
-        background-color: rgb(39, 38, 38);
+        background-color: rgb(93, 93, 202);
         color: white;
         padding: 15px 35px;
         border: none;
@@ -39,16 +45,46 @@
 
     .btn-next:hover {
         cursor: pointer;
-        background-color: gold;
+        background-color: rgb(255, 255, 255);
         color: rgb(39, 38, 38);
         box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
         transform: translateY(-1px);
     }
 
+    .btn-next:focus {
+        outline: none;
+    }
+
+    .btn-nextX {
+        background-color: rgb(0, 0, 0);
+        color: white;
+        padding: 15px 35px;
+        border: none;
+        border-radius: 27px;
+        transition: 0.4s all;
+    }
+
+    .btn-nextX:hover {
+        cursor: pointer;
+        background-color: rgb(255, 255, 255);
+        color: rgb(39, 38, 38);
+        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .btn-nextX:focus {
+        outline: none;
+    }
+
     .simulator,
-    .instruction,#code {
+    .instruction {
         /*background-color: rgba(225, 225, 225,0.5);*/
-        text-shadow: 0px 1px 1px rgb(34, 34, 34);
+        border-radius: 20px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding: 0% 1% 1% 1%;
+    }
+
+    #code{
         border-radius: 20px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
@@ -61,7 +97,8 @@
     }
 
     .float {
-        background-color: rgba(225, 225, 225, 0.8);
+
+        background-color: rgb(129, 224, 231);
         border-radius: 20px;
     }
 
@@ -146,7 +183,7 @@
             <li>Message to be sent should be a numeric message containing only numbers (0-9).</li>
             <li>Message sent should be in range [0-300].</li>
         </ul>
-        <div class="popup" id="myBtn"><b style="color: brown"><span id="click">Click to see
+        <div class="popup" id="myBtn"><b style="color: red; text-shadow: none; "><span id="click">Click to see
                     formulae</span></b>
             <span class="popuptext" id="myPopup">Formulae box</span>
         </div>
@@ -155,10 +192,10 @@
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content"  style="border-radius: 20px;">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>RSA encryption decryption formulae</h2>
+                <h2 style="color: rgb(93, 93, 202);">RSA encryption decryption formulae</h2>
             </div>
             <div class="modal-body">
                 <p>The formulae used are as follows : </p>
@@ -172,7 +209,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <h3>Please refer to these formulae for understanding the underlying concepts.</h3>
+                <h3 style="color: rgb(93, 93, 202);">Please refer to these formulae for understanding the underlying concepts.</h3>
             </div>
         </div>
 
@@ -244,7 +281,7 @@ decmsg=pow(encmsg,d)%N;
         <div class="float" id="encrypted" style="background-color: rgba(243, 210, 101, 0.8);">
             Encrypted Data: 
             <strong><span id="encmsg"></span></strong> <br><br>
-            <center><input class="btn-next" type="submit" value="Send" id="send_message" onclick="send()"></center>
+            <center><input class="btn-nextX" type="submit" value="Send" id="send_message" onclick="send()"></center>
         </div>
         <div class="float" id="sending" style="background-color:  rgba(243, 210, 101, 0.8);">
             Data: <strong><span id="encmsg1"></span></strong>
@@ -271,29 +308,36 @@ decmsg=pow(encmsg,d)%N;
     }
 
     .instruction {
-        border: 1px solid black;
+        border: 1px solid rgb(93, 93, 202);
         padding: 0% 1% 1% 1%;
         line-height: 1.4;
         margin-bottom: 1px;
         height: 200px;
+        box-shadow: 5px 5px 4px rgb(93, 93, 202);
+        color:  rgb(93, 93, 202);
+        text-shadow: 0px 1px 1px rgb(3, 1, 121);
     }
 
     .simulator {
-        border: 1px solid black;
+        border: 1px solid rgb(93, 93, 202);
+        padding: 1% 1% 1% 1%;;
         padding: 1% 1% 1% 1%;
         height: 70%;
         width: 70%;        
         position: relative;
         overflow: auto;
+        box-shadow: 5px 5px 4px rgb(93, 93, 202);
     }
     #code{
-        height: 68%;
+        height: 70%;
         width: 25.75%;
         padding: 1% 1% 1% 1%;
         position: absolute;
         right: 0%;
-        border: 1px solid black;
+        border: 1px solid  rgb(93, 93, 202);
+        padding: 0% 1% 1% 1%;;
         overflow: auto;
+        box-shadow: 5px 5px 4px rgb(93, 93, 202);
     }
 
     /* The animation code */
@@ -673,7 +717,7 @@ decmsg=pow(encmsg,d)%N;
         document.getElementById('sending').style.animationTimingFunction = 'ease-in-out';
         document.getElementById('sending').addEventListener("animationend", function () {
             document.getElementById('sending').style.display = 'none';
-            document.getElementById('sending').innerHTML += '<br><br><input class="btn-next" type="submit" value="Decrypt" id="decrypt_message" onclick="recieve()">                ';
+            document.getElementById('sending').innerHTML += '<br><br><input class="btn-nextX" type="submit" value="Decrypt" id="decrypt_message" onclick="recieve()">                ';
             document.getElementById('sending').style.display = 'block';
         });
 
