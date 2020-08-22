@@ -291,6 +291,88 @@ decmsg=pow(encmsg,d)%N;
             Decrypted Data:
             <strong><span id="decmsg"></span></strong> <br>
         </div>
+        <center><span id="quizalert" style="color:red;"></span><br><br></center>
+    </div>
+    <div name="quizdiv" id="quizdiv">
+        <hr>
+        <h1 style="text-align:center; color:rgb(93, 93, 202);">Attempt Task</h1>
+    
+        <ol style="font-size:15px;font-weight:bold;">
+            <li>For Overloading a method in python requires :<br>
+                <div style="font-weight:normal;font-size:14px">
+                    <input type="radio" id="op11" name="q1" value="op11">
+                    <label id="lop11">Different number of arguments</label><br>
+                    <input type="radio" id="op12" name="q1" value="op12">
+                    <label id="lop12">Different return types</label><br>
+                    <input type="radio" id="op13" name="q1" value="op13">
+                    <label id="lop13">Both</label><br>
+                    <input type="radio" id="op14" name="q1" value="op14">
+                    <label id="lop14">None of the above</label><br>
+                </div>
+            </li>
+            <br>
+    
+            <li>Can we overload a method with same number of arguments in python?<br>
+                <div style="font-weight:normal;font-size:14px">
+                    <input type="radio" id="op21" name="q2" value="op21">
+                    <label id="lop21">YES</label><br>
+                    <input type="radio" id="op22" name="q2" value="op22">
+                    <label id="lop22">NO</label><br>
+                </div>
+            </li>
+            <br>
+    
+            <li>How can we get the area of a square? :<br>
+                <div style="font-weight:normal;font-size:14px">
+                    <input type="radio" id="op31" name="q3" value="op31">
+                    <label id="lop31">By passing one argument</label><br>
+                    <input type="radio" id="op32" name="q3" value="op32">
+                    <label id="lop32">By passing two same argument</label><br>
+                    <input type="radio" id="op33" name="q3" value="op33">
+                    <label id="lop33">Cannot be calculated</label><br>
+                    <input type="radio" id="op34" name="q3" value="op34">
+                    <label id="lop34">None of the above</label><br>
+                </div>
+            </li>
+            <br>
+    
+            <li>Assume a method getArea() is overloaded, having 0, 1 and 2 parameters respectively.
+                Which of the definition of overloaded method is more likely to be executed if overloaded method is called in
+                such a way :
+                getArea(0) ?<br>
+                <div style="font-weight:normal;font-size:14px">
+                    <input type="radio" id="op41" name="q4" value="op41">
+                    <label id="lop41">def getArea(var1,var2):</label><br>
+                    <input type="radio" id="op42" name="q4" value="op42">
+                    <label id="lop42">def getArea(var1):</label><br>
+                    <input type="radio" id="op43" name="q4" value="op43">
+                    <label id="lop43">def getArea():</label><br>
+                    <input type="radio" id="op44" name="q4" value="op44">
+                    <label id="lop44">First declared definition of overloaded method</label><br>
+                    <input type="radio" id="op45" name="q4" value="op45">
+                    <label id="lop45">None of the above</label><br>
+                </div>
+            </li>
+            <br>
+    
+            <li>What will happen if signature of called method doesn't match with any overloaded method?<br>
+                <div style="font-weight:normal;font-size:14px">
+                    <input type="radio" id="op51" name="q5" value="op51">
+                    <label id="lop51">Execution of definition with most similar signature</label><br>
+                    <input type="radio" id="op52" name="q5" value="op52">
+                    <label id="lop52">No Output</label><br>
+                    <input type="radio" id="op53" name="q5" value="op53">
+                    <label id="lop53">Error</label><br>
+                    <input type="radio" id="op54" name="q5" value="op54">
+                    <label id="lop54">None of the above</label><br>
+                </div>
+            </li>
+            <input type="button" style="width:80px;" name="quizsubmit" id="quizsubmit" value="Submit"
+                onclick="viewresult()" />
+            <br>
+            <span id="score"></span>
+    
+        </ol>
     </div>
 </body>
 
