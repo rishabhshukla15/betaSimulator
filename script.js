@@ -108,6 +108,9 @@ window.onclick = function (event) {
     }
 }
 
+function reset(){
+   window.location.reload();
+}
 
 
 
