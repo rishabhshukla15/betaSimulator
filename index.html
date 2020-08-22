@@ -106,7 +106,7 @@
     .popup {
         position: relative;
         float: right;
-        bottom: 100;
+        bottom: 35;
         display: inline-block;
         cursor: pointer;
         -webkit-user-select: none;
@@ -181,11 +181,11 @@
             <li>P and Q should be between 11 and 100.</li>
             <li>Value of e differs according to the given inputs.</li>
             <li>Message to be sent should be a numeric message containing only numbers (0-9).</li>
-            <li>Message sent should be in range [0-300].</li>
+            <li>Message sent should be in range [0-200].</li>
         </ul>
         <div class="popup" id="myBtn"><b style="color: red; text-shadow: none; "><span id="click">Click to see
-                    formulae</span></b>
-            <span class="popuptext" id="myPopup">Formulae box</span>
+                    formulae</span></b> 
+                    <input class="btn-next" value="Reset" onclick="reset()" style="background-color: red; width: 110px;padding: 3%;text-align: center;"/>
         </div>
 
     </div>    
@@ -251,15 +251,17 @@ decmsg=pow(encmsg,d)%N;
             <label for="p">Enter P:</label>
             <input class="option" type="text" id="p" name="p"><br><br>
             <label for="q">Enter Q:</label>
-            <input class="option" type="text" id="q" name="q">
-            <input class="btn-next" type="submit" value="Submit" id="pqsubmit" onclick="sub()">
+            <input class="option" type="text" id="q" name="q"><br>
+            <input class="btn-next" type="submit" value="Submit" id="pqsubmit" onclick="sub()"><br>
+            <span id="error" style="color: red;"></span>            
         </div>
         <div id="eform">
             <label for="e">Choose a value for e:</label>
             <select style="border-radius: 20px; background-color: rgba(225, 225, 225, 0.8);" name="e" id="e">
                 <option value="">Select e</option>
             </select>
-            <input class="btn-next" type="submit" value="Submit" id="esubmit" onclick="esub()">
+            <input class="btn-next" type="submit" value="Submit" id="esubmit" onclick="esub()"><br>
+            <span id="perror" style="color: red;"></span> 
         </div>
         <div class="float" id="pqdetail">
             P: <span id="p1"></span><br>
@@ -276,7 +278,8 @@ decmsg=pow(encmsg,d)%N;
         <div id="send">
             <label for="p">Enter Message:</label>
             <input class="option" type="text" id="message" name="send">
-            <input class="btn-next" type="submit" value="Encrypt" id="encrypt" onclick="encrypt()">
+            <input class="btn-next" type="submit" value="Encrypt" id="encrypt" onclick="encrypt()"><br>
+            <span id="merror" style="color: red;"></span> 
         </div>
         <div class="float" id="encrypted" style="background-color: rgba(243, 210, 101, 0.8);">
             Encrypted Data: 
@@ -291,83 +294,40 @@ decmsg=pow(encmsg,d)%N;
             Decrypted Data:
             <strong><span id="decmsg"></span></strong> <br>
         </div>
-        <center><span id="quizalert" style="color:red;"></span><br><br></center>
-        <input class="btn-next" value="reset" onclick="reset()" style="background-color: red; width: 100px; position:absolute; bottom:100px; right:10px;">
+        <center><span id="quizalert" style="color:red;position: relative;left: 20%;"></span><br><br></center>        
     </div>
     <div name="quizdiv" id="quizdiv">
         <hr>
         <h1 style="text-align:center; color:rgb(93, 93, 202);">Attempt Task</h1>
     
         <ol style="font-size:15px;font-weight:bold;">
-            <li>For Overloading a method in python requires :<br>
+            <li>Dexter wants to set up his own public and private keys. He chooses p = 23 and q = 19 with e = 283. Find d?<br>
                 <div style="font-weight:normal;font-size:14px">
                     <input type="radio" id="op11" name="q1" value="op11">
-                    <label id="lop11">Different number of arguments</label><br>
+                    <label id="lop11">11</label><br>
                     <input type="radio" id="op12" name="q1" value="op12">
-                    <label id="lop12">Different return types</label><br>
+                    <label id="lop12">7</label><br>
                     <input type="radio" id="op13" name="q1" value="op13">
-                    <label id="lop13">Both</label><br>
+                    <label id="lop13">37</label><br>
                     <input type="radio" id="op14" name="q1" value="op14">
-                    <label id="lop14">None of the above</label><br>
+                    <label id="lop14">19</label><br>
                 </div>
             </li>
-            <br>
+            <br>                
     
-            <li>Can we overload a method with same number of arguments in python?<br>
-                <div style="font-weight:normal;font-size:14px">
-                    <input type="radio" id="op21" name="q2" value="op21">
-                    <label id="lop21">YES</label><br>
-                    <input type="radio" id="op22" name="q2" value="op22">
-                    <label id="lop22">NO</label><br>
-                </div>
-            </li>
-            <br>
-    
-            <li>How can we get the area of a square? :<br>
+            <li> For p = 11 and q = 19 and choose e=17. Apply RSA algorithm where message=5 and find the cipher text?<br>
                 <div style="font-weight:normal;font-size:14px">
                     <input type="radio" id="op31" name="q3" value="op31">
-                    <label id="lop31">By passing one argument</label><br>
+                    <label id="lop31">92</label><br>
                     <input type="radio" id="op32" name="q3" value="op32">
-                    <label id="lop32">By passing two same argument</label><br>
+                    <label id="lop32">80</label><br>
                     <input type="radio" id="op33" name="q3" value="op33">
-                    <label id="lop33">Cannot be calculated</label><br>
+                    <label id="lop33">67</label><br>
                     <input type="radio" id="op34" name="q3" value="op34">
-                    <label id="lop34">None of the above</label><br>
+                    <label id="lop34">39</label><br>
                 </div>
             </li>
-            <br>
-    
-            <li>Assume a method getArea() is overloaded, having 0, 1 and 2 parameters respectively.
-                Which of the definition of overloaded method is more likely to be executed if overloaded method is called in
-                such a way :
-                getArea(0) ?<br>
-                <div style="font-weight:normal;font-size:14px">
-                    <input type="radio" id="op41" name="q4" value="op41">
-                    <label id="lop41">def getArea(var1,var2):</label><br>
-                    <input type="radio" id="op42" name="q4" value="op42">
-                    <label id="lop42">def getArea(var1):</label><br>
-                    <input type="radio" id="op43" name="q4" value="op43">
-                    <label id="lop43">def getArea():</label><br>
-                    <input type="radio" id="op44" name="q4" value="op44">
-                    <label id="lop44">First declared definition of overloaded method</label><br>
-                    <input type="radio" id="op45" name="q4" value="op45">
-                    <label id="lop45">None of the above</label><br>
-                </div>
-            </li>
-            <br>
-    
-            <li>What will happen if signature of called method doesn't match with any overloaded method?<br>
-                <div style="font-weight:normal;font-size:14px">
-                    <input type="radio" id="op51" name="q5" value="op51">
-                    <label id="lop51">Execution of definition with most similar signature</label><br>
-                    <input type="radio" id="op52" name="q5" value="op52">
-                    <label id="lop52">No Output</label><br>
-                    <input type="radio" id="op53" name="q5" value="op53">
-                    <label id="lop53">Error</label><br>
-                    <input type="radio" id="op54" name="q5" value="op54">
-                    <label id="lop54">None of the above</label><br>
-                </div>
-            </li>
+            <br>                
             <input class="btn-next" type="button" name="quizsubmit" id="quizsubmit" value="Submit"
                 onclick="viewresult()" />
             <br>
@@ -626,7 +586,7 @@ decmsg=pow(encmsg,d)%N;
     .modal-content {
         border: 1px solid black;
         position: fixed;
-        bottom: 50%;
+        top: 25%;
         background-color: #fefefe;
         width: 98%;
         left: 1%;
@@ -742,26 +702,49 @@ decmsg=pow(encmsg,d)%N;
     }
 
     function sub() {
+        p = document.getElementById('p').value;
+        q = document.getElementById('q').value;
+        if (p<11 || p>100 || q<11 || q>100 || p=='' || q=='' || p==q) {
+            document.getElementById('error').innerHTML='Please enter different valid Prime numbers in range [11-100]';
+        }
+        else{
+            document.getElementById('error').innerHTML='';        
         document.getElementById('pqform').style.animation = 'example 2s';
         document.getElementById('pqform').style.animationDelay = '-1s';
         //console.log('entered');
         pqupdate();
         ecalc();
         document.getElementById('pqform').addEventListener("animationend", function () { document.getElementById('pqform').style.display = 'none'; change(); });
+        }
     }
-    function encrypt() {
+    function encrypt() {        
+        var m=document.getElementById('message').value;
+        if (isNaN(m) || m>200 || m<0 || m=='') {
+            document.getElementById('merror').innerHTML='Please enter a valid message!';        
+        }
+        else{        
         document.getElementById('send').style.animation = 'example 2s';
         document.getElementById('send').style.animationDelay = '-1s';
         get_encrypt();
         document.getElementById('send').addEventListener("animationend", function () { document.getElementById('send').style.display = 'none'; show1(); });
+        }
     }
 
-    function esub() {
-        document.getElementById('eform').style.animation = 'example 1s';
-        pb();
-        prkey();
-        document.getElementById('gif').innerHTML = '<img src="public_key.gif" width="650px" height="250px" style="background: transparent;">';
-        document.getElementById('eform').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'none'; echange(); });
+    function esub() {        
+        var e = document.getElementById("e");                   
+        if (e.options[e.selectedIndex].value=="Select e" || e.options[e.selectedIndex].value=='') {
+            //console.log('nan');            
+            document.getElementById('perror').innerHTML='Please choose e!';        
+        }
+        else{
+            //console.log('no nan');            
+            document.getElementById('perror').innerHTML='';                
+            document.getElementById('eform').style.animation = 'example 1s';
+            pb();
+            prkey();
+            document.getElementById('gif').innerHTML = '<img src="public_key.gif" width="650px" height="250px" style="background: transparent;">';
+            document.getElementById('eform').addEventListener("animationend", function () { document.getElementById('eform').style.display = 'none'; echange(); });
+        }
     }
     function dchange() {
         document.getElementById('gif').innerHTML = '<img src="private_key.gif" width="650px" height="250px" style="background: transparent;">';
